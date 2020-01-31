@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+            <a style="font-size: large; font-weight: bold;">{{pageTitle}}</a>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Customer Name</th>
+                                <th>Customer Mobile Number</th>
+                                <th>Customer Email</th>
+                                <th>Gender</th>
+                                <th>Ratting</th>
+                                <th>Home Address</th>
+                                <th>Work Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let customer of customer ; let i= index'>
+
+                                <td>{{customer.customerName }}</td>
+                                <td>{{customer.customerNum}}</td>
+                                <td>{{customer.customerEmail}}</td>
+                                <td>{{customer.gender}}</td>
+                                <td>{{customer.ratting}}</td>
+
+                                <td>
+                                    <div *ngFor='let address of customer.addresses '>
+                                        <div *ngIf="address.addressType==0">
+                                            {{address.street1}},{{address.street1}},{{address.city}}-{{address.pinCode}},{{address.district}}
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div *ngFor='let address of customer.addresses'>
+                                        <div *ngIf="address.addressType==1">
+                                            {{address.street1}},{{address.street1}},{{address.city}}-{{address.pinCode}},{{address.district}}
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td> <button class="btn btn-outline-info" type="button"
+                                        (click)="Delete(customer.customerId)" style="width:80px">Delete</button>
+                                    &nbsp;
+                                    &nbsp;
+                                    <button class="btn btn-outline-info" type="button" style="width:80px"><a
+                                            [routerLink]="[customer.customerId,'edit']">Update </a></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
